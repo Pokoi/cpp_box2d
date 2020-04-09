@@ -48,86 +48,115 @@ public:
         // RAMP
         {
 
-            glm::vec2 pre_ramp_vertices[4]
+            glm::vec2 vertices[4]
             {
-                {int(0 * window_width), int(0 * window_height)},
-                {int(0.1f * window_width), int(0 * window_height)},
-                {int(0.1f * window_width), int(0.4f * window_height)},
-                {int(0 * window_width), int(0.4f * window_height)}
+                {int(0     * window_width), int(0     * window_height)},
+                {int(0.09f * window_width), int(0     * window_height)},
+                {int(0.09f * window_width), int(0.29f * window_height)},
+                {int(0     * window_width), int(0.29f * window_height)}
             };
 
             T2DPhysicCollider pre_ramp_collider(
                                                 first_geometry,
                                                 glm::vec2{ 0,0 },
-                                                pre_ramp_vertices,
+                                                vertices,
                                                 sf::Color(126, 190, 255),
                                                 200.f,
                                                 0.2f,
                                                 0.f
                                                 );
 
-            T2DPhysicCollider ramp_phase_1(
-                                            first_geometry,
-                                            glm::vec2{ 0,0 },
-                                            glm::vec2{ int(0.1f * window_width), int(0.4f * window_height) },
-                                            glm::vec2{ int(0.2f * window_width), int(0.2f * window_height) },
-                                            sf::Color(126, 190, 255),
-                                            200.f,
-                                            0.2f,
-                                            0.f
-                                            );
+            
+            vertices[0] = { int(0.09f * window_width), int(0 * window_height) };
+            vertices[1] = { int(0.12f * window_width), int(0 * window_height) };
+            vertices[2] = { int(0.12f * window_width), int(0.19f * window_height) };
+            vertices[3] = { int(0.09f  * window_width),  int(0.29f * window_height)};
+            
 
-            T2DPhysicCollider ramp_phase_2(
-                                            first_geometry,
-                                            glm::vec2{ 0,0 },
-                                            glm::vec2{ int(0.2f * window_width), int(0.2f * window_height) },
-                                            glm::vec2{ int(0.3f * window_width), int(0.17f * window_height) },
-                                            sf::Color(126, 190, 255),
-                                            200.f,
-                                            0.2f,
-                                            0.f
-                                            );
+            T2DPhysicCollider ramp_phase_1_collider(
+                                                    first_geometry,
+                                                    glm::vec2{ 0,0 },
+                                                    vertices,
+                                                    sf::Color(126, 190, 255),
+                                                    200.f,
+                                                    0.2f,
+                                                    0.f
+                                                    );
 
-            T2DPhysicCollider ramp_phase_3(
-                                            first_geometry,
-                                            glm::vec2{ 0,0 },
-                                            glm::vec2{ int(0.3f * window_width), int(0.17f * window_height) },
-                                            glm::vec2{ int(0.35f * window_width), int(0.2f * window_height) },
-                                            sf::Color(126, 190, 255),
-                                            200.f,
-                                            0.2f,
-                                            0.f
-                                            );
+            vertices[0] = { int(0.12f * window_width), int(0 * window_height) };
+            vertices[1] = { int(0.15f * window_width), int(0 * window_height) };
+            vertices[2] = { int(0.15f * window_width), int(0.13f * window_height) };
+            vertices[3] = { int(0.12f * window_width),  int(0.19f * window_height)};
+            
 
+            T2DPhysicCollider ramp_phase_2_collider(
+                                                    first_geometry,
+                                                    glm::vec2{ 0,0 },
+                                                    vertices,
+                                                    sf::Color(126, 190, 255),
+                                                    200.f,
+                                                    0.2f,
+                                                    0.f
+                                                    );
+
+            vertices[0] = { int(0.15f * window_width), int(0 * window_height) };
+            vertices[1] = { int(0.19f * window_width), int(0 * window_height) };
+            vertices[2] = { int(0.19f * window_width), int(0.08f * window_height) };
+            vertices[3] = { int(0.15f * window_width),  int(0.13f * window_height)};
+            
+
+            T2DPhysicCollider ramp_phase_3_collider(
+                                                    first_geometry,
+                                                    glm::vec2{ 0,0 },
+                                                    vertices,
+                                                    sf::Color(126, 190, 255),
+                                                    200.f,
+                                                    0.2f,
+                                                    0.f
+                                                    );
+
+            vertices[0] = { int(0.19f * window_width), int(0 * window_height) };
+            vertices[1] = { int(0.36f * window_width), int(0 * window_height) };
+            vertices[2] = { int(0.36f * window_width), int(0.09f * window_height) };
+            vertices[3] = { int(0.19f * window_width),  int(0.08f * window_height)};
+            
+
+            T2DPhysicCollider ramp_phase_4_collider(
+                                                    first_geometry,
+                                                    glm::vec2{ 0,0 },
+                                                    vertices,
+                                                    sf::Color(126, 190, 255),
+                                                    200.f,
+                                                    0.2f,
+                                                    0.f
+                                                    );
+
+            vertices[0] = { int(0.36f * window_width), int(0 * window_height) };
+            vertices[1] = { int(0.44f * window_width), int(0 * window_height) };
+            vertices[2] = { int(0.44f * window_width), int(0.14f * window_height) };
+            vertices[3] = { int(0.36f * window_width),  int(0.09f * window_height)};
+            
+
+            T2DPhysicCollider ramp_phase_5_collider(
+                                                    first_geometry,
+                                                    glm::vec2{ 0,0 },
+                                                    vertices,
+                                                    sf::Color(126, 190, 255),
+                                                    200.f,
+                                                    0.2f,
+                                                    0.f
+                                                    );
 
         }
         
         // POST HOLE RAMP
         {
-            glm::vec2 post_ramp_vertices[4]
-            {
-                {int(0.35f * window_width), int(0 * window_height)},
-                {int(0.4f * window_width), int(0 * window_height)},
-                {int(0.4f * window_width), int(0.2f * window_height)},
-                {int(0.35f * window_width), int(0.2f * window_height)}
-            };
-
-            T2DPhysicCollider post_ramp_collider (
-                                                    first_geometry,
-                                                    glm::vec2{ 0,0 },
-                                                    post_ramp_vertices,
-                                                    sf::Color (126, 190, 255),
-                                                    200.f,
-                                                    0.2f,
-                                                    0.f
-                                                );
-
             glm::vec2 second_ramp_vertices[4]
             {
-                {int (0.55f * window_width), int (0    * window_height)},
-                {int (0.85f * window_width), int (0    * window_height)},
-                {int (0.85f * window_width), int (0.2f * window_height)},
-                {int (0.55f * window_width), int (0.1f * window_height)}
+                {int (0.62f * window_width), int (0    * window_height)},
+                {int (0.87f * window_width), int (0    * window_height)},
+                {int (0.87f * window_width), int (0.1f * window_height)},
+                {int (0.62f * window_width), int (0.05f * window_height)}
             };
         
         
@@ -146,10 +175,10 @@ public:
         {
             glm::vec2 fly_platform_vertices[4]
             {
-                {int (0.25f * window_width), int (0.8f    * window_height)},
-                {int (0.4f  * window_width), int (0.8f    * window_height)},
-                {int (0.4f  * window_width), int (0.9f * window_height)},
-                {int (0.25f * window_width), int (0.9f * window_height)}
+                {int (0.33f * window_width), int (0.60f * window_height)},
+                {int (0.44f * window_width), int (0.60f * window_height)},
+                {int (0.44f * window_width), int (0.65f * window_height)},
+                {int (0.33f * window_width), int (0.65f * window_height)}
             };
         
         
@@ -163,6 +192,45 @@ public:
                                                     0.f
                                                 );
         }
+
+        // FLY PLATFORM RECEIVE ZONE
+        {
+            glm::vec2 vertices[4]
+            {
+                {int (0.26f * window_width), int (0.39f * window_height)},
+                {int (0.33f * window_width), int (0.60f * window_height)},
+                {int (0.33f * window_width), int (0.65f * window_height)},
+                {int (0.25f * window_width), int (0.41f * window_height)}
+            };
+        
+        
+            T2DPhysicCollider rigth_limit       (
+                                                    first_geometry,
+                                                    glm::vec2{ 0,0 },
+                                                    vertices,
+                                                    sf::Color (126, 190, 255),
+                                                    200.f,
+                                                    0.2f,
+                                                    0.f
+                                                );
+
+            vertices[0] = { int(0.18f * window_width), int(0.62 * window_height) };
+            vertices[1] = { int(0.26f * window_width), int(0.39f * window_height) };
+            vertices[2] = { int(0.27f * window_width), int(0.41f * window_height) };
+            vertices[3] = { int(0.19f * window_width),  int(0.65f * window_height) };
+
+        
+            T2DPhysicCollider left_limit       (
+                                                    first_geometry,
+                                                    glm::vec2{ 0,0 },
+                                                    vertices,
+                                                    sf::Color (126, 190, 255),
+                                                    200.f,
+                                                    0.2f,
+                                                    0.f
+                                                );
+        }
+
 
         first_geometry.get_body()->SetUserData(this);
         bodies.push_back(new T2DPhysicBody(first_geometry));

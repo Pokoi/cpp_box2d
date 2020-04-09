@@ -48,10 +48,10 @@ public:
 
         glm::vec2 pre_ramp_vertices[4]
         {
-            {int(0.85f * window_width), int(0 * window_height)},
+            {int(0.87f * window_width), int(0 * window_height)},
             {int(1.f   * window_width), int(0 * window_height)},
-            {int(1.f   * window_width), int(0.2f * window_height)},
-            {int(0.85f * window_width), int(0.2f * window_height)}
+            {int(1.f   * window_width), int(0.11f * window_height)},
+            {int(0.87f * window_width), int(0.1f * window_height)}
         };
 
         T2DPhysicCollider collider  (
