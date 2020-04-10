@@ -32,18 +32,58 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
+#include "T2DPhysicWorld.hpp"
+#include "T2DPhysicBody.hpp"
+#include "T2DPhysicCollider.hpp"
+
+#include "car.hpp"
+#include "Geometry.hpp"
+#include "InteractuableGeometry.hpp"
+#include "Tower.hpp"
+#include "Ball.hpp"
+
+#include <glm/glm.hpp>
+
 class Scene
 {
-    std::vector<Entity&> entities;
+    const size_t BALLS_COUNT = 6;
+
+    std::vector<Entity*> entities;
+
+    T2DPhysicWorld world;
 
 
 public:
 
+    Scene(size_t window_width, size_t window_height) : world{ glm::vec2{ 0.f,-10.f } }
+    {      
+
+        Car * car = new Car(window_width, window_height, world);
+        Geometry * solid_geometry = new Geometry(window_width, window_height, world);
+        Tower * balls_tower = new Tower(window_width, window_height, world);
+        InteractuableGeometry * receive_platform = new InteractuableGeometry(window_width, window_height, world, *balls_tower);
+
+        glm::vec2 balls_spawn = balls_tower->get_position();
+
+        for (size_t i = 0; i < BALLS_COUNT; i++)
+        {
+            Ball* ball = new Ball({ balls_spawn.x, balls_spawn.y + 100 }, world);
+            entities.push_back(ball);
+        }
+
+        entities.push_back(car);
+        entities.push_back(solid_geometry);
+        entities.push_back(balls_tower);
+        entities.push_back(receive_platform);
+    }
+
     void update(float delta)
     {
+        world.get_world()->Step(delta, 8, 4);
+
         for (auto& entity : entities)
         {
-            entity.update(delta);
+            entity->update(delta);
         }
     }
 
@@ -51,7 +91,15 @@ public:
     {
         for (auto& entity : entities)
         {
-            entity.render(window);
+            entity->render(window);
+        }
+    }
+
+    ~Scene()
+    {
+        for (auto& entity : entities)
+        {
+            delete entity;
         }
     }
 

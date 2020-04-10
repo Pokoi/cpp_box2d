@@ -231,6 +231,11 @@ public:
                                                 );
         }
 
+        //WALLS
+        {            
+            T2DPhysicCollider left_wall(first_geometry, glm::vec2{ 0,0 }, glm::vec2{ 0,0 }, glm::vec2{ 0, window_height }, sf::Color::Transparent, 1.f, 0.f, 0.f);
+            T2DPhysicCollider rigth_wall(first_geometry, glm::vec2{ 0,0 }, glm::vec2{ window_width,0 }, glm::vec2{ window_width, window_height }, sf::Color::Transparent, 1.f, 0.f, 0.f);
+        }
 
         first_geometry.get_body()->SetUserData(this);
         bodies.push_back(new T2DPhysicBody(first_geometry));

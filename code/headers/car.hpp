@@ -32,30 +32,47 @@
 #include "T2DPhysicCollider.hpp"
 #include <iostream>
 
+#include "glm/glm.hpp"
+
 #include "Entity.h"
 
 
 class Car : public Entity
 {
+    
+    T2DPhysicBody chassis;
+    T2DPhysicBody front_wheel;
+    T2DPhysicBody back_wheel;
+    T2DPhysicBody trailer;
+
+    glm::vec2 start             { 0,0 };
+    glm::vec2 chassis_offset    { 0,0 };
+    glm::vec2 front_wheel_offset{ 0,0 };
+    glm::vec2 back_wheel_offset { 0,0 };
+    glm::vec2 trailer_offset    { 0,0 };
+
+    b2RevoluteJoint * back_wheel_motor;
+    b2RevoluteJoint * front_wheel_motor;
+    b2RevoluteJoint * trailer_motor;
+
+
 
 public:
 
-    Car(T2DPhysicWorld & world)
-    {
-        this->name = "car";
+    Car(size_t window_width, size_t window_height, T2DPhysicWorld& world);
+    
+    void reset_position();
 
-        T2DPhysicBody body(world, T2DPhysicBody::body_types::DYNAMIC, {400,300});
-        T2DPhysicCollider collider(body, glm::vec2{ 0,0 }, 10.f, sf::Color::Magenta, 100.f, 0.f, 0.f);
-
-        (body).get_body()->SetUserData(this);        
-
-        bodies.push_back(new T2DPhysicBody (body));
-    }
-        
-    virtual void update(float delta) {};
+    virtual void update(float delta) override;
     
 
-    virtual void on_collision_begin(Entity& other) {};
+    virtual void on_collision_begin(Entity& other) 
+    {
+        if (other.get_name() == "reset")
+        {
+            reset_position();
+        }
+    };
 
     virtual void on_collision_end(Entity& other) {};
 

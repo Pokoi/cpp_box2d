@@ -54,4 +54,9 @@ public:
     b2Body * create_body(b2BodyDef & body_def);
 
     b2World* get_world() { return world; }
+
+    b2Joint* create_joint(b2JointDef& joint_def)
+    {
+        return world->CreateJoint(&joint_def);
+    }
 };

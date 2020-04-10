@@ -156,6 +156,7 @@
     <ClCompile Include="..\..\code\sources\T2DPhysicWorld.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\code\headers\Ball.hpp" />
     <ClInclude Include="..\..\code\headers\car.hpp" />
     <ClInclude Include="..\..\code\headers\Entity.h" />
     <ClInclude Include="..\..\code\headers\Geometry.hpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="..\..\code\headers\T2DPhysicCollider.hpp" />
     <ClInclude Include="..\..\code\headers\T2DPhysicEvents.hpp" />
     <ClInclude Include="..\..\code\headers\T2DPhysicWorld.hpp" />
+    <ClInclude Include="..\..\code\headers\Tower.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

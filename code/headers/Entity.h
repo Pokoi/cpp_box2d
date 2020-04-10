@@ -41,12 +41,23 @@ protected:
     std::string name;
     std::vector<T2DPhysicBody*> bodies;
 
-public: 
+public:     
 
-    void render(sf::RenderWindow& window);
+    void render(sf::RenderWindow& window)
+    {
+        for (auto& body : bodies)
+        {
+            body->render(window);
+        }
+    }
     
     virtual void update(float delta)                = 0;
     virtual void on_collision_begin(Entity& other)  = 0;
     virtual void on_collision_end(Entity& other)    = 0;
+
+    std::string get_name()
+    {
+        return name;
+    }
 
 };

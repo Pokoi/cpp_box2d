@@ -30,6 +30,7 @@
 #pragma once
 
 #include <Entity.h>
+#include <Tower.hpp>
 #include <T2DPhysicWorld.hpp>
 #include "T2DPhysicBody.hpp"
 #include "T2DPhysicCollider.hpp"
@@ -37,9 +38,11 @@
 class InteractuableGeometry : public Entity
 {
 
+    Tower target;
+
 public:
 
-    InteractuableGeometry(size_t window_width, size_t window_height, T2DPhysicWorld& world)
+    InteractuableGeometry(size_t window_width, size_t window_height, T2DPhysicWorld& world, Tower& target) : target{target}
     {
         this->name = "interactuable geometry";
                
@@ -74,7 +77,19 @@ public:
 
     virtual void update(float delta) {};
 
-    virtual void on_collision_begin(Entity& other) {};
+    virtual void on_collision_begin(Entity& other) 
+    {
+        if (other.get_name() == "car")
+        {
+            target.release_balls();
+        }
+    };
 
-    virtual void on_collision_end(Entity& other) {};
+    virtual void on_collision_end(Entity& other)
+    {
+        if (other.get_name() == "car")
+        {
+            target.stop();
+        }
+    };
 };

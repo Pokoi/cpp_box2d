@@ -28,10 +28,4 @@
  * SOFTWARE.
  */
 
-void Entity::render(sf::RenderWindow& window)
-{
-    for (auto& body : bodies)
-    {
-        body->render(window);
-    }
-}
+
