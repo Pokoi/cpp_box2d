@@ -35,6 +35,7 @@
 
 #include "T2DPhysicBody.hpp"
 
+
 class Entity
 {
 protected:
@@ -43,18 +44,43 @@ protected:
 
 public:     
 
+    /**
+    @brief Render of the entity
+    @param window The window render context
+    */
     void render(sf::RenderWindow& window)
     {
         for (auto& body : bodies)
         {
-            body->render(window);
+            if (body->get_body()->IsActive())
+            {
+                body->render(window);
+            }
         }
     }
     
+    /**
+    @brief Updates the entity behaviour
+    @param delta The seconds between frames
+    */
     virtual void update(float delta)                = 0;
+
+    /**
+    @brief Event called when a collision begins
+    @param other The other entity in the collision
+    */
     virtual void on_collision_begin(Entity& other)  = 0;
+
+    /**
+    @brief Event called when a collision ends
+    @param other The other entity in the collision
+    */
     virtual void on_collision_end(Entity& other)    = 0;
 
+    /**
+    @brief Gets the name of the entity
+    @return The name of the entity
+    */
     std::string get_name()
     {
         return name;

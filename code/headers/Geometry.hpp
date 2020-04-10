@@ -39,6 +39,12 @@ class Geometry : public Entity
 
 public:
 
+    /**
+    @brief Creates the scene static geometry
+    @param window_width The width of the render window
+    @param window_height The height of the render window
+    @param world A reference to the physic world this entity belongs
+    */
     Geometry(size_t window_width, size_t window_height, T2DPhysicWorld& world)
     {
         this->name = "geometry";
@@ -242,9 +248,21 @@ public:
         
     }
 
+    /**
+    @brief Updates the entity behaviour
+    @param delta The seconds between frames
+    */
     virtual void update(float delta) {};
 
+    /**
+    @brief Event called when a collision begins
+    @param other The other entity in the collision
+    */
     virtual void on_collision_begin(Entity& other) {};
-
+    
+    /**
+    @brief Event called when a collision ends
+    @param other The other entity in the collision
+    */
     virtual void on_collision_end(Entity& other) {};
 };

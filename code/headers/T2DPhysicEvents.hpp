@@ -37,8 +37,15 @@ class T2DPhysicEvents : public b2ContactListener
 {
 public:
 
+    /**
+    @brief Creates a T2DPhysicEvents instance
+    */
     T2DPhysicEvents() {}
 
+    /**
+    @brief Listener to begin contact events
+    @param contact The contact of the collision    
+    */
     void BeginContact(b2Contact* contact) override
     {
         Entity* entity_1 = static_cast<Entity*> (contact->GetFixtureA()->GetBody()->GetUserData());
@@ -51,6 +58,10 @@ public:
         }
     }
 
+    /**
+    @brief Listener to end contact events
+    @param contact The contact of the collision
+    */
     void EndContact(b2Contact* contact) override
     {
         Entity* entity_1 = static_cast<Entity*> (contact->GetFixtureA()->GetBody()->GetUserData());

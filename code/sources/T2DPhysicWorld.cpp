@@ -29,13 +29,21 @@
 
 #include <T2DPhysicWorld.hpp>
 
-
+ /**
+@brief Creates a T2DPhysicWorld instance
+@param gravity The gravity of the physic world
+*/
 T2DPhysicWorld::T2DPhysicWorld(glm::vec2 gravity) 
 {
     world = new b2World(b2Vec2{ gravity.x, gravity.y });
     world->SetContactListener(&events_listener);
 }
 
+/**
+@brief Creates a physic body object
+@param body_def A reference to the body definition
+@return A pointer to the created physic body
+*/
  b2Body * T2DPhysicWorld::create_body(b2BodyDef & body_def)
 {    
     return world->CreateBody(&body_def);

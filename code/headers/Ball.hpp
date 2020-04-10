@@ -42,6 +42,11 @@ class Ball : public Entity
 
 public:
 
+    /**
+    @brief Creates a ball instance
+    @param position The position where spawn the ball    
+    @param world A reference to the physic world this entity belongs
+    */
     Ball(glm::vec2 position, T2DPhysicWorld & world) : sphere{ world, T2DPhysicBody::body_types::DYNAMIC, position }
     {
         this->name = "ball";
@@ -52,8 +57,22 @@ public:
         bodies.push_back(new T2DPhysicBody(sphere));
     }
 
+    /**
+    @brief Updates the entity behaviour
+    @param delta The seconds between frames
+    */
     virtual void update(float delta) {};
+
+    /**
+    @brief Event called when a collision begins
+    @param other The other entity in the collision
+    */
     virtual void on_collision_begin(Entity& other) {};
+
+    /**
+    @brief Event called when a collision ends
+    @param other The other entity in the collision
+    */
     virtual void on_collision_end(Entity& other) {};
 
 };

@@ -31,6 +31,7 @@
 
 #include <Entity.h>
 #include <Tower.hpp>
+#include <Platform.hpp>
 #include <T2DPhysicWorld.hpp>
 #include "T2DPhysicBody.hpp"
 #include "T2DPhysicCollider.hpp"
@@ -39,10 +40,19 @@ class InteractuableGeometry : public Entity
 {
 
     Tower target;
+    Platform platform;
 
 public:
 
-    InteractuableGeometry(size_t window_width, size_t window_height, T2DPhysicWorld& world, Tower& target) : target{target}
+    /**
+    @brief Creates the interactuable platform
+    @param window_width The width of the render window
+    @param window_height The height of the render window
+    @param world A reference to the physic world this entity belongs
+    @param target A reference to the tower to activate
+    @param platform A reference to the platform to activate
+    */
+    InteractuableGeometry(size_t window_width, size_t window_height, T2DPhysicWorld& world, Tower& target, Platform& platform) : target{ target }, platform{platform}
     {
         this->name = "interactuable geometry";
                
@@ -75,16 +85,29 @@ public:
 
     }
 
+    /**
+    @brief Updates the entity behaviour
+    @param delta The seconds between frames
+    */
     virtual void update(float delta) {};
 
+    /**
+    @brief Event called when a collision begins
+    @param other The other entity in the collision
+    */
     virtual void on_collision_begin(Entity& other) 
     {
         if (other.get_name() == "car")
         {
             target.release_balls();
+            platform.show();
         }
     };
 
+    /**
+    @brief Event called when a collision ends
+    @param other The other entity in the collision
+    */
     virtual void on_collision_end(Entity& other)
     {
         if (other.get_name() == "car")

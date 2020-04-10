@@ -30,7 +30,12 @@
 #include <T2DPhysicBody.hpp>
 #include <T2DPhysicWorld.hpp>
 
-
+/**
+@brief Creates a T2DPhysicBody instance
+@param world A reference to the physic world this entity belongs to
+@param type The type of body
+@param offset The pivot coordinates of the body
+*/
 T2DPhysicBody::T2DPhysicBody(class T2DPhysicWorld& world, body_types type, glm::vec2 offset)
 {     
 

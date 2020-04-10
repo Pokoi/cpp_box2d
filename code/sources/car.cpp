@@ -30,6 +30,12 @@
 
 #include "car.hpp"
 
+/**
+@brief Creates a car instance
+@param window_width The width of the render window
+@param window_height The height of the render window
+@param world A reference to the physic world this entity belongs
+*/
 Car::Car(size_t window_width, size_t window_height, T2DPhysicWorld& world)
     :
     chassis     { world, T2DPhysicBody::body_types::DYNAMIC, { int(0.07f * window_width * 0.5f ), int(0.03f * window_height * 0.5f) } },
@@ -55,7 +61,7 @@ Car::Car(size_t window_width, size_t window_height, T2DPhysicWorld& world)
     bodies.push_back(new T2DPhysicBody(chassis));
 
     // BACK WHEEL
-    T2DPhysicCollider back_wheel_collider(back_wheel, glm::vec2{ 0,0 }, 0.02f * window_height, sf::Color::Magenta, 10.f, 0.2f, 0.2f);
+    T2DPhysicCollider back_wheel_collider(back_wheel, glm::vec2{ 0,0 }, 0.02f * window_height, sf::Color::Magenta, 10.f, 0.2f, 0.1f);
     
     back_wheel.get_body()->SetUserData(this);
     back_wheel_offset = { back_wheel.get_body()->GetPosition().x, back_wheel.get_body()->GetPosition().y };
@@ -75,7 +81,7 @@ Car::Car(size_t window_width, size_t window_height, T2DPhysicWorld& world)
 
 
     // FRONT WHEEL
-    T2DPhysicCollider front_wheel_collider(front_wheel, glm::vec2{ 0,0 }, 0.02f * window_height, sf::Color::Magenta, 10.f, 0.2f, 0.2f);
+    T2DPhysicCollider front_wheel_collider(front_wheel, glm::vec2{ 0,0 }, 0.02f * window_height, sf::Color::Magenta, 10.f, 0.2f, 0.1f);
 
     front_wheel.get_body()->SetUserData(this);
     front_wheel_offset = { front_wheel.get_body()->GetPosition().x, front_wheel.get_body()->GetPosition().y };
@@ -134,6 +140,9 @@ Car::Car(size_t window_width, size_t window_height, T2DPhysicWorld& world)
     reset_position();
 }
 
+/**
+@brief Reset the car position to initial position
+*/
 void Car::reset_position()
 {
     chassis.set_position({ start.x + chassis_offset.x, start.y + chassis_offset.y });
@@ -142,9 +151,13 @@ void Car::reset_position()
     trailer.set_position({ start.x + trailer_offset.x, start.y + trailer_offset.y });
 }
 
+/**
+@brief Updates the car behaviour in base of the input
+@param delta The seconds between frames
+*/
 void Car::update(float delta)
 {
-    float speed = 9500.f;
+    float speed = 1000.f;
     
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {        
@@ -164,11 +177,16 @@ void Car::update(float delta)
     
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
-        trailer_motor->SetMotorSpeed(10000.f);
+        trailer_motor->SetMotorSpeed(200000);
     }
     else
     {
         trailer_motor->SetMotorSpeed(0.f);
+    }
+
+    if (chassis.get_body()->GetPosition().y < 0)
+    {
+        reset_position();
     }
  
 }

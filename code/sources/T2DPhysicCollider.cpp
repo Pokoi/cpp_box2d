@@ -31,7 +31,16 @@
 #include <T2DPhysicBody.hpp>
 
 
-
+/**
+@brief Creates a circular collider
+@param body A reference to its owner body
+@param local_position The local pivot coordinates
+@param radius The radius of the collider
+@param color The color to render
+@param density The density of the collider
+@param friction The friction of the collider
+@param restitution The restitution of the collider
+*/
 T2DPhysicCollider::T2DPhysicCollider (
                                         class T2DPhysicBody & body, 
                                         glm::vec2 local_position,
@@ -60,6 +69,16 @@ T2DPhysicCollider::T2DPhysicCollider (
 
 }
 
+/**
+@brief Creates a box collider
+@param body A reference to its owner body
+@param local_position The local pivot coordinates
+@param vertices The vertices coordinates of the box
+@param color The color to render
+@param density The density of the collider
+@param friction The friction of the collider
+@param restitution The restitution of the collider
+*/
 T2DPhysicCollider::T2DPhysicCollider (
                                         class T2DPhysicBody & body, 
                                         glm::vec2 local_position, 
@@ -95,6 +114,17 @@ T2DPhysicCollider::T2DPhysicCollider (
 
 }
 
+/**
+@brief Creates a edge collider
+@param body A reference to its owner body
+@param local_position The local pivot coordinates
+@param origin The origin coordinates of the edge
+@param end The origin coordinates of the edge
+@param color The color to render
+@param density The density of the collider
+@param friction The friction of the collider
+@param restitution The restitution of the collider
+*/
 T2DPhysicCollider::T2DPhysicCollider (
                                         class T2DPhysicBody & body,
                                         glm::vec2 local_position,
@@ -128,6 +158,11 @@ T2DPhysicCollider::T2DPhysicCollider (
 
 }
 
+/**
+@brief Render the collider
+@param window The render window context
+@param body The T2DPhysicBody owner of this collider
+*/
 void T2DPhysicCollider::render(sf::RenderWindow& window, class T2DPhysicBody body)
 {
     if (type == collider_types::CIRCULAR)

@@ -44,17 +44,38 @@ class T2DPhysicWorld
 
 public:
 
+    /**
+    @brief Creates a T2DPhysicWorld instance
+    @param gravity The gravity of the physic world
+    */
     T2DPhysicWorld(glm::vec2 gravity);
-        
+    
+    /**
+    @brief Releases the memory    
+    */
     ~T2DPhysicWorld()
     {
         delete world;
     }
 
+    /**
+    @brief Creates a physic body object
+    @param body_def A reference to the body definition
+    @return A pointer to the created physic body 
+    */
     b2Body * create_body(b2BodyDef & body_def);
 
+    /**
+    @brief Gets a pointer to the physic world object    
+    @return A pointer to the physic world object
+    */
     b2World* get_world() { return world; }
 
+    /**
+    @brief Creates a joint between two bodies
+    @param joint_def A reference to the joint definition
+    @return A pointer to the created joint
+    */
     b2Joint* create_joint(b2JointDef& joint_def)
     {
         return world->CreateJoint(&joint_def);

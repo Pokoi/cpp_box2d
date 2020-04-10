@@ -40,6 +40,7 @@
 #include "Geometry.hpp"
 #include "InteractuableGeometry.hpp"
 #include "Tower.hpp"
+#include "Platform.hpp"
 #include "Ball.hpp"
 
 #include <glm/glm.hpp>
@@ -55,13 +56,19 @@ class Scene
 
 public:
 
+    /**
+    @brief Creates the scene and all its entities
+    @param window_width The width of the render window
+    @param window_height The height of the render window
+    */
     Scene(size_t window_width, size_t window_height) : world{ glm::vec2{ 0.f,-10.f } }
     {      
 
-        Car * car = new Car(window_width, window_height, world);
-        Geometry * solid_geometry = new Geometry(window_width, window_height, world);
-        Tower * balls_tower = new Tower(window_width, window_height, world);
-        InteractuableGeometry * receive_platform = new InteractuableGeometry(window_width, window_height, world, *balls_tower);
+        Car      * car              = new Car(window_width, window_height, world);
+        Geometry * solid_geometry   = new Geometry(window_width, window_height, world);
+        Tower    * balls_tower      = new Tower(window_width, window_height, world);
+        Platform * platform         = new Platform(window_width, window_height, world);
+        InteractuableGeometry * receive_platform = new InteractuableGeometry(window_width, window_height, world, *balls_tower, *platform);
 
         glm::vec2 balls_spawn = balls_tower->get_position();
 
@@ -74,9 +81,14 @@ public:
         entities.push_back(car);
         entities.push_back(solid_geometry);
         entities.push_back(balls_tower);
+        entities.push_back(platform);
         entities.push_back(receive_platform);
     }
 
+    /**
+    @brief Updates all the scene entities
+    @param delta The seconds between frames
+    */
     void update(float delta)
     {
         world.get_world()->Step(delta, 8, 4);
@@ -87,6 +99,10 @@ public:
         }
     }
 
+    /**
+    @brief Render all the scene entities
+    @param window The render window context
+    */
     void render(sf::RenderWindow& window)
     {
         for (auto& entity : entities)
@@ -95,6 +111,9 @@ public:
         }
     }
 
+    /**
+    @brief Free memory    
+    */
     ~Scene()
     {
         for (auto& entity : entities)

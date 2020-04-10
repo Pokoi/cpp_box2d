@@ -59,13 +59,29 @@ class Car : public Entity
 
 public:
 
+    /**
+    @brief Creates a car instance
+    @param window_width The width of the render window
+    @param window_height The height of the render window
+    @param world A reference to the physic world this entity belongs
+    */
     Car(size_t window_width, size_t window_height, T2DPhysicWorld& world);
     
+    /**
+    @brief Reset the car position to initial position
+    */
     void reset_position();
 
+    /**
+    @brief Updates the car behaviour in base of the input
+    @param delta The seconds between frames
+    */
     virtual void update(float delta) override;
     
-
+    /**
+    @brief Event called when a collision begins
+    @param other The other entity in the collision
+    */
     virtual void on_collision_begin(Entity& other) 
     {
         if (other.get_name() == "reset")
@@ -73,7 +89,11 @@ public:
             reset_position();
         }
     };
-
+    
+    /**
+    @brief Event called when a collision ends
+    @param other The other entity in the collision
+    */
     virtual void on_collision_end(Entity& other) {};
 
 };

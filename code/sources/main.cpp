@@ -7,12 +7,14 @@
 
 int main()
 {
+	// Window size
 	const int WINDOW_WIDTH  = 1164;
 	const int WINDOW_HEIGHT = 412;
 
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Box2D Assignment", sf::Style::Titlebar | sf::Style::Close, sf::ContextSettings(32));
 	window.setVerticalSyncEnabled(true);	
 	
+	// Scene creation
 	Scene scene((size_t)WINDOW_WIDTH, (size_t)WINDOW_HEIGHT);
 	
 	float delta_time = 0.015f;	// ~60 fps
@@ -20,8 +22,6 @@ int main()
 
 	do
 	{
-		
-
 		// Process window events:
 		sf::Event event;
 
@@ -38,9 +38,7 @@ int main()
 
 		// Render:
 		window.clear();
-
 		scene.render(window);
-
 		window.display();
 		
 	} while (running);

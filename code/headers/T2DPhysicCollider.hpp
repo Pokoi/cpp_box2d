@@ -52,6 +52,16 @@ class T2DPhysicCollider
 
 public:
 
+    /**
+    @brief Creates a circular collider
+    @param body A reference to its owner body
+    @param local_position The local pivot coordinates
+    @param radius The radius of the collider
+    @param color The color to render
+    @param density The density of the collider
+    @param friction The friction of the collider
+    @param restitution The restitution of the collider
+    */
     T2DPhysicCollider   (
                             class T2DPhysicBody & body, 
                             glm::vec2 local_position, 
@@ -62,6 +72,16 @@ public:
                             float restitution   = 0.f
                         );
 
+    /**
+    @brief Creates a box collider
+    @param body A reference to its owner body
+    @param local_position The local pivot coordinates
+    @param vertices The vertices coordinates of the box
+    @param color The color to render
+    @param density The density of the collider
+    @param friction The friction of the collider
+    @param restitution The restitution of the collider
+    */
     T2DPhysicCollider   (
                             class T2DPhysicBody & body, 
                             glm::vec2 local_position,
@@ -72,6 +92,17 @@ public:
                             float restitution   = 0.f
                         );
 
+    /**
+    @brief Creates a edge collider
+    @param body A reference to its owner body
+    @param local_position The local pivot coordinates
+    @param origin The origin coordinates of the edge
+    @param end The origin coordinates of the edge
+    @param color The color to render
+    @param density The density of the collider
+    @param friction The friction of the collider
+    @param restitution The restitution of the collider
+    */
     T2DPhysicCollider   (
                             class T2DPhysicBody & body, 
                             glm::vec2 local_position, 
@@ -82,42 +113,74 @@ public:
                             float friction      = 0.f,
                             float restitution   = 0.f
                         );    
-
+    /**
+    @brief Set the density of the collider
+    @param value The density to apply
+    */
     void set_density(float value)
     {
         fixture->density = value;
     }
 
+    /**
+    @brief Set the friction of the collider
+    @param value The friction to apply
+    */
     void set_friction(float value)
     {
         fixture->friction = value;
     }
 
+    /**
+    @brief Set the restitution of the collider
+    @param value The restitution to apply
+    */
     void set_restitution(float value)
     {
         fixture->restitution = value;
     }
 
+    /**
+    @brief Get the density of the collider
+    @return The density of the collider
+    */
     float get_density()
     {
         return fixture->density;
     }
 
+    /**
+    @brief Get the friction of the collider
+    @return The friction of the collider
+    */
     float get_friction()
     {
         return fixture->friction;
     }
 
+    /**
+    @brief Get the restitution of the collider
+    @return The restitution of the collider
+    */
     float get_restitution()
     {
         return fixture->restitution;
     }
 
+    /**
+    @brief Get a reference to the fixture of the collider
+    @return The fixture of the collider
+    */
     b2FixtureDef & get_fixture()
     {
         return *fixture;
     }
 
+    /**
+    @brief Render the collider
+    @param window The render window context
+    @param body The T2DPhysicBody owner of this collider
+    */
     void render(sf::RenderWindow & window, class T2DPhysicBody body);
 
 };

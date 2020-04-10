@@ -44,6 +44,12 @@ class Tower : public Entity
 
 public:
 
+    /**
+    @brief Creates a tower instance
+    @param window_width The width of the render window
+    @param window_height The height of the render window
+    @param world A reference to the physic world this entity belongs
+    */
     Tower(size_t window_width, size_t window_height, T2DPhysicWorld& world)
     {
         this->name = "balls tower";
@@ -96,22 +102,35 @@ public:
 
     }
 
-
+    /**
+    @brief Rotates to release the balls
+    */
     void release_balls() 
     {
         bodies[0]->get_body()->SetAngularVelocity(-0.75f);
     }
 
+    /**
+    @brief Stops the angular movement of the tower   
+    */
     void stop()
     {
         bodies[0]->get_body()->SetAngularVelocity(0);
     }
 
+    /**
+    @brief Gets the tower pivot position
+    @return The initial position of the tower
+    */
     glm::vec2 get_position()
     {
         return initial_position;
     }
 
+    /**
+    @brief Updates the entity behaviour
+    @param delta The seconds between frames
+    */
     virtual void update(float delta) 
     {
         if (glm::abs(bodies[0]->get_body()->GetAngle()) > 0.78f)
@@ -120,8 +139,16 @@ public:
         }
     };
 
+    /**
+    @brief Event called when a collision begins
+    @param other The other entity in the collision
+    */
     virtual void on_collision_begin(Entity& other) {};
 
+    /**
+    @brief Event called when a collision ends
+    @param other The other entity in the collision
+    */
     virtual void on_collision_end(Entity& other) {};
 
 };

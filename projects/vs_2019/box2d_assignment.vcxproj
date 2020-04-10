@@ -148,9 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\sources\car.cpp" />
-    <ClCompile Include="..\..\code\sources\Entity.cpp" />
     <ClCompile Include="..\..\code\sources\main.cpp" />
-    <ClCompile Include="..\..\code\sources\Scene.cpp" />
     <ClCompile Include="..\..\code\sources\T2DPhysicBody.cpp" />
     <ClCompile Include="..\..\code\sources\T2DPhysicCollider.cpp" />
     <ClCompile Include="..\..\code\sources\T2DPhysicWorld.cpp" />
@@ -161,6 +159,7 @@
     <ClInclude Include="..\..\code\headers\Entity.h" />
     <ClInclude Include="..\..\code\headers\Geometry.hpp" />
     <ClInclude Include="..\..\code\headers\InteractuableGeometry.hpp" />
+    <ClInclude Include="..\..\code\headers\Platform.hpp" />
     <ClInclude Include="..\..\code\headers\Scene.hpp" />
     <ClInclude Include="..\..\code\headers\T2DPhysicBody.hpp" />
     <ClInclude Include="..\..\code\headers\T2DPhysicCollider.hpp" />
